@@ -18,3 +18,10 @@ spec:
   podSelector: {}
   policyTypes:
   - Ingress
+---
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: marker
+data:
+  foo: bar
