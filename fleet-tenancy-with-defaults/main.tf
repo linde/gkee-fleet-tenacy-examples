@@ -1,3 +1,7 @@
+
+// TODO these should be vars, trying to keep everything
+// in one page for consciseness.
+
 locals {
   fleet_project       = "stevenlinde-general-2023"
   region              = "us-central1"
@@ -51,11 +55,10 @@ resource "google_gke_hub_feature" "fleet_config_defaults" {
       config_sync {
         source_format = "unstructured"
         git {
-          sync_repo   = "https://github.com/linde/gitops-minimal-network-policy.git"
+          sync_repo   = "https://github.com/linde/gkee-fleet-tenacy-examples.git"
           sync_branch = "main"
           secret_type = "none"
-          policy_dir  = "policy"
-
+          policy_dir  = "fleet-tenancy-with-defaults/k8s-policy-dir/policy"
         }
       }
     }
