@@ -10,3 +10,16 @@ This repo hosts a few GKE Enterprise Fleet Tenancy examples
 > The HCL here is for illustrative purposes only. It is meant to share the concepts and some example usage, 
 > not to represent production configuration. To that end, locals are used where generally vars would be in 
 > order. Also, everthing is in one page, where possible, to faciliate comprehension.
+
+# Usage 
+
+Because we're using a random hex value to prevent collisions within a project/fleet, you need to apply this in a two stage process. first stage is to fix the value of `random_id.rand`. Based on that, you update the scope selector in your cloned repo, then apply the full project.
+
+```
+terraform apply -auto-approve -target=random_id.rand
+echo random_id.rand | terraform console 
+# use the value from the console command above to get the rand value, then
+# update the namespace selector based on it
+terraform apply -auto-approve 
+```
+
