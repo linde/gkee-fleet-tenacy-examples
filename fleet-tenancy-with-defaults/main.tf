@@ -76,9 +76,9 @@ resource "google_container_cluster" "acme_clusters" {
     project = local.fleet_project
   }
   deletion_protection = false
-  depends_on = [ 
-    google_gke_hub_feature.fleet_config_defaults, 
-    google_gke_hub_feature.fleet_policy_defaults 
+  depends_on = [
+    google_gke_hub_feature.fleet_config_defaults,
+    google_gke_hub_feature.fleet_policy_defaults
   ]
 }
 
@@ -128,19 +128,11 @@ resource "google_gke_hub_membership_binding" "acme_scope_clusters" {
 // for the scope and pick up any config from the configmanagement repo that has appropriate
 // namespace and/or scope selectors. this is done one per set of namespaces needed.
 
-// WARNING: because the for_each depends on the random_id, you need to apply the random_id first
-// terraform apply -auto-approve -target=random_id.rand
-
 resource "google_gke_hub_namespace" "acme_scope_namespaces" {
-  for_each = toset([for ns in local.namespace_names : "${ns}-${random_id.rand.hex}"])
+  for_each = toset(local.namespace_names)
 
   project            = local.fleet_project
-  scope_namespace_id = each.key
+  scope_namespace_id = "{each.key}-${random_id.rand.hex}"
   scope_id           = google_gke_hub_scope.acme_scope.scope_id
   scope              = google_gke_hub_scope.acme_scope.id
-
 }
-
-
-
-
