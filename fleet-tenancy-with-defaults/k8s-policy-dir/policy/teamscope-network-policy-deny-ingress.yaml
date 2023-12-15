@@ -27,4 +27,4 @@ metadata:
   namespace: default
   name: marker
 data:
-  ignored: true
+  ignored: "true"
