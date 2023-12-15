@@ -1,4 +1,4 @@
-# fleet-tenancy-with-defaults
+# Fleet Tenancy with Defaults
 
 > **Note:**
 > The HCL here is for illustrative purposes only. It is meant to share the concepts and some
@@ -31,5 +31,46 @@ terraform apply
 
 # Things to check
 
-[TODO add some kubectl and gcloud examples to show what's happening]
+First set some environment variables based on the terraform state:
 
+```bash
+
+export PROJECT=$(echo google_container_cluster.acme_clusters[0].project | terraform console | sed s/\"//g)
+export CLUSTER_LOCATION=$(echo google_container_cluster.acme_clusters[0].location | terraform console | sed s/\"//g)
+
+export MEMBERSHIP=$(echo google_gke_hub_membership_binding.acme_scope_clusters[0].membership_id | terraform console | sed s/\"//g)
+export SCOPE=$(echo google_gke_hub_scope.acme_scope.scope_id | terraform console | sed s/\"//g)
+
+```
+
+Now we cam see the Fleet Tenancy GCP resources we made and get credentials to 
+explore the k8s resources on the cluster:
+
+
+```bash
+
+gcloud container fleet memberships list --project=$PROJECT
+
+gcloud container fleet scopes list --project=$PROJECT
+
+gcloud container fleet scopes namespaces  list --project=$PROJECT  --scope=$SCOPE
+
+gcloud container fleet memberships --project=$PROJECT  get-credentials --location=$CLUSTER_LOCATION  $MEMBERSHIP
+
+```
+
+and in k8s, we can see hub and configsync managed resources:
+
+```bash
+
+# should show namespaces in local.namespace_names
+kubectl get ns -l "fleet.gke.io/fleet-scope=acme-corp-products-team"
+
+# should show networkpolicy in every namespace in the scope
+kubectl get networkpolicy --all-namespaces
+
+```
+
+# This to try
+
+* add a new namespace in `locals.namespace_names` and see it propagate and get resources with the namespace selector in configsync.
