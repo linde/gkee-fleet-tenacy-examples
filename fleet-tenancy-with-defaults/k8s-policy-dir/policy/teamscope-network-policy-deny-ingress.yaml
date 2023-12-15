@@ -8,7 +8,7 @@ spec:
     matchLabels:
       ## change the hex suffix to the name your scope gets from terraform
       ## in reality, this would be a fixed name within a fleet. 
-      fleet.gke.io/fleet-scope: gkee-fleet-tf-d7dcb49d
+      fleet.gke.io/fleet-scope: gkee-fleet-tf-80890664
 ---
 ### from https://kubernetes.io/docs/concepts/services-networking/network-policies/#default-deny-all-ingress-traffic
 apiVersion: networking.k8s.io/v1
