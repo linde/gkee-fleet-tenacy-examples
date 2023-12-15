@@ -6,6 +6,7 @@ locals {
   fleet_project       = "stevenlinde-general-2023"
   region              = "us-central1"
   cluster_zones       = "${local.region}-c"
+  team_id             = "acme-corp-products-team"
   team_principal      = "acme-dev@acme.com"
   team_principal_role = "EDIT"
   num_clusters        = 1
@@ -21,7 +22,8 @@ resource "random_id" "rand" {
 }
 
 //////////////////////////////////////////////////////////////////////
-// first of all, charlie fleet-level setup stuff -- once per fleet host project
+// first of all, Platform-Admin fleet-level setup stuff -- once 
+// per fleet host project
 
 // policy defaults
 resource "google_gke_hub_feature" "fleet_policy_defaults" {
@@ -82,13 +84,13 @@ resource "google_container_cluster" "acme_clusters" {
   ]
 }
 
-//////////////////////////////////////////////////////////////////////
-// now, charlie addresses team bootstrap stuff. happens once per team
+/////////////////////////////////////////////////////////////////////////////
+// now, Platform-Admin addresses team bootstrap stuff. happens once per team
 
 // first the team scope resource itself
 resource "google_gke_hub_scope" "acme_scope" {
   project  = local.fleet_project
-  scope_id = "gkee-fleet-tf-${random_id.rand.hex}"
+  scope_id = local.team_id
 }
 
 // and then give them local.team_principal_role access in the cluster
@@ -124,9 +126,10 @@ resource "google_gke_hub_membership_binding" "acme_scope_clusters" {
 }
 
 //////////////////////////////////////////////////////////////////////
-// Lastly alice level fleet namespace provisioning, they will be sync'ed to all bound clusters
-// for the scope and pick up any config from the configmanagement repo that has appropriate
-// namespace and/or scope selectors. this is done one per set of namespaces needed.
+// Lastly App Operator/SRE level fleet namespace provisioning, they 
+// will be sync'ed to all bound clusters for the scope and pick up any 
+// config from the configmanagement repo that has appropriate namespace 
+// and/or scope selectors. this is done one per set of namespaces needed.
 
 resource "google_gke_hub_namespace" "acme_scope_namespaces" {
   for_each = toset(local.namespace_names)
