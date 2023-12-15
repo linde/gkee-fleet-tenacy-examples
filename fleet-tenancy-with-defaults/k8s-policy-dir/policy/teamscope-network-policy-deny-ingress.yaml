@@ -3,6 +3,7 @@ apiVersion: configmanagement.gke.io/v1
 metadata:
   name: fleet-scope-selector
 spec:
+  mode: dynamic
   selector:
     matchLabels:
       ## change the hex suffix to the name your scope gets from terraform
@@ -20,11 +21,3 @@ spec:
   podSelector: {}
   policyTypes:
   - Ingress
----
-apiVersion: v1
-kind: ConfigMap
-metadata:
-  namespace: default
-  name: marker
-data:
-  ignored: "true"
