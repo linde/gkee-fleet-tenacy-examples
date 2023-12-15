@@ -132,7 +132,7 @@ resource "google_gke_hub_namespace" "acme_scope_namespaces" {
   for_each = toset(local.namespace_names)
 
   project            = local.fleet_project
-  scope_namespace_id = "{each.key}-${random_id.rand.hex}"
+  scope_namespace_id = "${each.key}-${random_id.rand.hex}"
   scope_id           = google_gke_hub_scope.acme_scope.scope_id
   scope              = google_gke_hub_scope.acme_scope.id
 }
