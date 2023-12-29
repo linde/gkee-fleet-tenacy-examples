@@ -8,5 +8,5 @@ entries:
       sources:
       - https://github.com/linde/gkee-fleet-tenacy-examples/tree/main/fleet-tenancy-with-defaults
       urls:
-      - ttps://github.com/linde/fix/this
+      - https://linde.github.io/gkee-fleet-tenacy-examples/gkee-team-selector-example.tgz
       version: 0.1.0
