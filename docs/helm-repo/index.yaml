@@ -5,8 +5,8 @@ entries:
       description: Deploys a GKE Enterprise Team scope selector example
       home: https://github.com/linde/gkee-fleet-tenacy-examples/tree/main/fleet-tenancy-with-defaults
       name: gkee-team-selector-example
+      version: 0.1.0
       sources:
       - https://github.com/linde/gkee-fleet-tenacy-examples/tree/main/fleet-tenancy-with-defaults
       urls:
       - https://linde.github.io/gkee-fleet-tenacy-examples/gkee-team-selector-example.tgz
-      version: 0.1.0
