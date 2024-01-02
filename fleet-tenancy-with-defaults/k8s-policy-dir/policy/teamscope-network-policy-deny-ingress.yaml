@@ -1,3 +1,7 @@
+# This is the original unstructured repo for the example.
+# the newer example uses a helm chart instead of a flat
+# git repo install. This allows one to pass params such
+# as the team name via the config sync config
 kind: NamespaceSelector
 apiVersion: configmanagement.gke.io/v1
 metadata:
