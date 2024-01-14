@@ -88,6 +88,11 @@ resource "google_gke_hub_feature" "fleetobservability" {
       }
     }
   }
+
+  depends_on = [
+    google_project_service.gkee,
+    google_project_service.gkehub,
+  ]
 }
 
 
