@@ -22,6 +22,6 @@ locals {
   namespaces    = data.terraform_remote_state.team_level.outputs.namespaces
   scope         = data.terraform_remote_state.team_level.outputs.scope
 
-  connect_gateway_host = data.terraform_remote_state.team_resources.outputs.connect_gateway_host
+  connect_gateway_hosts = data.terraform_remote_state.team_resources.outputs.connect_gateway_hosts
 }
 
