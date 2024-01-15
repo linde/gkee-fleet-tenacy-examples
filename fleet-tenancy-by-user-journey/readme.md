@@ -11,8 +11,11 @@ First, the [Platform Admin Provisioning](./platform-admin-provisioning/) journey
 
 In the above journeys, the Platform Admin provisions clusters and namespaces for the teams.
 
-Going forward we will also add user journeys where Platform Admin/SRE self services.
+Additionally, there is also an example App Operator/SRE self service example:
 
+* [team-self-service-namespace](./platform-admin-provisioning/team-self-service-namespace/)
+
+In this the App Operator self service creates a team specific namespace and then deploys a workload to it using connecting information from the bound clusters. This uses Connect Gateway to manage the connection using the fleet membership.
 
 #  Usage
 
@@ -62,4 +65,15 @@ terraform apply
 
 ```
 
+Finally, shift roles and as App Operator/SRE then:
 
+```bash
+
+cd ../team-self-service-namespace
+
+terraform init
+terraform plan
+terraform apply 
+
+
+```
