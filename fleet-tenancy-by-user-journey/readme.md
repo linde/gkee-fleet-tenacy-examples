@@ -71,6 +71,11 @@ Finally, shift roles and as App Operator/SRE then:
 
 cd ../team-self-service-namespace
 
+
+# set the name of the self service namespace to be created and 
+# will get the workload
+echo 'selfserv_namespace = "selfserve"' > terraform.tfvars
+
 terraform init
 terraform plan
 terraform apply 
