@@ -1,15 +1,32 @@
 
 resource "google_container_cluster" "acme_clusters" {
-  project            = var.cluster_project
-  count              = var.cluster_count
-  location           = var.cluster_location
-  name               = "${var.cluster_prefix}-${local.rand.hex}-${count.index}"
-  initial_node_count = 3
+  project  = var.cluster_project
+  count    = var.cluster_count
+  location = var.cluster_location
+  name     = "${var.cluster_prefix}-${local.rand.hex}-${count.index}"
+
+  # start and stay pretty small since this is an example
+  initial_node_count = 1
+  cluster_autoscaling {
+    enabled = true
+    resource_limits {
+      resource_type = "cpu"
+      minimum       = 1
+      maximum       = 4
+    }
+    resource_limits {
+      resource_type = "memory"
+      minimum       = 4
+      maximum       = 16
+    }
+  }
+
   fleet {
     project = local.fleet_project
   }
 
   resource_labels = {
+    # enable mesh in this fleet
     "mesh_id" = "proj-${local.fleet_project_id}"
   }
 
