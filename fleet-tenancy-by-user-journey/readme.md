@@ -104,8 +104,13 @@ terraform init
 terraform plan
 terraform apply 
 
+# if the deployment fails because its namespace wasnt present, this just means
+# the hub controller hadnt had a chance to create it yet.  please just re-apply
+
+terraform apply 
 
 ```
+
 
 # TODO
 
