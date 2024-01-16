@@ -8,7 +8,7 @@ resource "google_gke_hub_namespace" "self_service_namespace" {
   scope              = local.scope.id
 
   namespace_labels = {
-   // "istio-injection" = "enabled"
+    "istio-injection" = "enabled"
   }
 }
 

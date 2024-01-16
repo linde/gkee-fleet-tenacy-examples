@@ -46,6 +46,12 @@ resource "google_project_service" "meshconfig" {
   disable_on_destroy = local.disable_on_destroy
 }
 
+resource "google_project_service" "meshca" {
+  project            = var.fleet_project
+  service            = "meshca.googleapis.com"
+  disable_on_destroy = local.disable_on_destroy
+}
+
 resource "google_project_service" "containersecurity" {
   project            = var.fleet_project
   service            = "containersecurity.googleapis.com"
