@@ -6,5 +6,9 @@ resource "google_gke_hub_namespace" "self_service_namespace" {
   scope_namespace_id = "${var.selfserv_namespace}-${local.rand.hex}"
   scope_id           = local.scope.scope_id
   scope              = local.scope.id
+
+  namespace_labels = {
+    "istio-injection" = "enabled"
+  }
 }
 
