@@ -3,6 +3,8 @@
 
 The following directories highlight terraform examples mapped to some user journeys.
 
+## Platform Admin Provisioning
+
 First, the [Platform Admin Provisioning](./platform-admin-provisioning/) journeys:
 
  * [project-level-setup](./platform-admin-provisioning/project-level-setup/)
@@ -19,7 +21,7 @@ In this the App Operator self service creates a team specific namespace and then
 
 #  Usage
 
-The idea is to step through the various phases which, so far, are named in alphabetical order. We are using different terraform projects because this is expected in actual usage, project level settings are separate from any specific team setup, etc. This allows for multiple teams to be set up under a fleet project independantly. Importantly, it also allows for teams to be torn down without coordinating affecting the critical fleet project.
+The idea is to step through the various phases which, so far, are named in alphabetical order. We are using different terraform projects because this is expected in actual usage -- project level settings are separate from any specific team setup, etc. This allows for multiple teams to be set up under a fleet project independantly. Importantly, it also allows for teams to be torn down without coordinating affecting the critical fleet project.
 
 
 
@@ -82,3 +84,8 @@ terraform apply
 
 
 ```
+
+# TODO
+
+* TODO figure out service accounts, in particular cascade of account creation for subsequent usage in providers. That is, in project level setup, create the google service account (with bindings for approp roles) used to create the team setup. in team setup, create the service account used to subsequently create resources and create a service account to self service namespaces, etc.
+
