@@ -24,6 +24,16 @@ resource "kubernetes_deployment" "nginx" {
         container {
           image = "nginx:latest"
           name  = "nginx"
+          resources {
+            limits = {
+              "memory" = "200Mi"
+              "cpu"    = "1"
+            }
+            requests = {
+              "memory" = "100Mi"
+              "cpu"    = "100m"
+            }
+          }
         }
       }
     }
