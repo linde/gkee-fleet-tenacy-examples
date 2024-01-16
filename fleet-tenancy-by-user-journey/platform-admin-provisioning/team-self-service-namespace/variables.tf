@@ -1,7 +1,7 @@
 
 
 variable "selfserv_namespace" {
-  type = string
+  type    = string
   default = "selfserve"
 }
 

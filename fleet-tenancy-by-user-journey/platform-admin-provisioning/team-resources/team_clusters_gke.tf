@@ -30,6 +30,11 @@ resource "google_container_cluster" "acme_clusters" {
     "mesh_id" = "proj-${local.fleet_project_id}"
   }
 
+  workload_identity_config {
+    # TODO should this be the cluster or fleet project? 
+    workload_pool = "${local.fleet_project}.svc.id.goog"
+  }
+
   monitoring_config {
     enable_components = ["APISERVER", "SCHEDULER", "CONTROLLER_MANAGER", "SYSTEM_COMPONENTS"]
   }
