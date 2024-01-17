@@ -104,12 +104,25 @@ terraform init
 terraform plan
 terraform apply 
 
-# if the deployment fails because its namespace wasnt present, this just means
-# the hub controller hadnt had a chance to create it yet.  please just re-apply
+# if the deployment fails because its namespace wasnt present or with the error 
+# `no matches for kind "PeerAuthentication" in group "security.istio.io"`, 
+# this  just means # the hub controller hadnt had a chance to create it yet.  
+# please just re-apply after the crds are present for istio and/or namespace appears.
 
 terraform apply 
 
 ```
+# Some Observations
+
+## Mesh
+
+In order to get mesh working completely, the following were necessary
+
+* In [project-level-setup](./platform-admin-provisioning/project-level-setup/) both `meshconfig.googleapis.com` and `meshca.googleapis.com` services needed to be enabled.  The latter was used by the sidecar out of the box.
+* In [team-resources](./platform-admin-provisioning/team-resources/), the cluster needed two settings. First, workload indentity needed to be enabled; also, the GCP resource for the cluster itself needed a label along the lines of `    "mesh_id" = "proj-${local.fleet_project_id}" (ie the numeric version of the project id)
+* Finally, each appropriate fleet namespace needed to get a label in its `namespace_labels` to match `"istio-injection" = "enabled"`
+
+There are probably other ways to make it all work, but this seemed like a pretty minimal number of tweaks.
 
 
 # TODO

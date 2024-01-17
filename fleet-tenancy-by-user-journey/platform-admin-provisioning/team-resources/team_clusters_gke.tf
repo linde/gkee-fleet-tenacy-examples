@@ -11,8 +11,8 @@ resource "google_container_cluster" "acme_clusters" {
     enabled = true
     resource_limits {
       resource_type = "cpu"
-      minimum       = 1
-      maximum       = 4
+      minimum       = 4
+      maximum       = 8
     }
     resource_limits {
       resource_type = "memory"
