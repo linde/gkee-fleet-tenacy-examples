@@ -106,7 +106,7 @@ terraform apply
 
 # if the deployment fails because its namespace wasnt present or with the error 
 # `no matches for kind "PeerAuthentication" in group "security.istio.io"`, 
-# this  just means # the hub controller hadnt had a chance to create it yet.  
+# this  just means the hub controller hadnt had a chance to create it yet.  
 # please just re-apply after the crds are present for istio and/or namespace appears.
 
 terraform apply 
