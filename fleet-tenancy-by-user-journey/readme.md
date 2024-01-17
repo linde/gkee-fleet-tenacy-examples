@@ -114,12 +114,12 @@ terraform apply
 ```
 # Some Observations
 
-## Mesh
+### Mesh
 
 In order to get mesh working completely, the following were necessary
 
 * In [project-level-setup](./platform-admin-provisioning/project-level-setup/) both `meshconfig.googleapis.com` and `meshca.googleapis.com` services needed to be enabled.  The latter was used by the sidecar out of the box.
-* In [team-resources](./platform-admin-provisioning/team-resources/), the cluster needed two settings. First, workload indentity needed to be enabled; also, the GCP resource for the cluster itself needed a label along the lines of `    "mesh_id" = "proj-${local.fleet_project_id}" (ie the numeric version of the project id)
+* In [team-resources](./platform-admin-provisioning/team-resources/), the cluster needed two settings. First, workload indentity needed to be enabled; also, the GCP resource for the cluster itself needed a label along the lines of `"mesh_id" = "proj-${local.fleet_project_id}"` (ie the numeric version of the project id)
 * Finally, each appropriate fleet namespace needed to get a label in its `namespace_labels` to match `"istio-injection" = "enabled"`
 
 There are probably other ways to make it all work, but this seemed like a pretty minimal number of tweaks.
