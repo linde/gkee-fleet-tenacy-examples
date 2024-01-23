@@ -31,8 +31,8 @@ resource "google_container_cluster" "acme_clusters" {
   }
 
   workload_identity_config {
-    # TODO should this be the cluster or fleet project? 
-    workload_pool = "${local.fleet_project}.svc.id.goog"
+    # default to the cluster pool 
+    workload_pool = "${var.cluster_project}.svc.id.goog"
   }
 
   monitoring_config {
