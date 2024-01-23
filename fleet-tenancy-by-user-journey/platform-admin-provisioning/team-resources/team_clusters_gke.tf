@@ -11,12 +11,12 @@ resource "google_container_cluster" "acme_clusters" {
     enabled = true
     resource_limits {
       resource_type = "cpu"
-      minimum       = 4
-      maximum       = 8
+      minimum       = 8
+      maximum       = 16
     }
     resource_limits {
       resource_type = "memory"
-      minimum       = 4
+      minimum       = 8
       maximum       = 16
     }
   }

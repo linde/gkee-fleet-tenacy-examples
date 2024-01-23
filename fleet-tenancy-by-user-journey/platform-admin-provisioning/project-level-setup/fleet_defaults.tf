@@ -80,10 +80,10 @@ resource "google_gke_hub_feature" "fleetobservability" {
     fleetobservability {
       logging_config {
         default_config {
-          // mode = "MOVE"
+          mode = "COPY"
         }
         fleet_scope_logs_config {
-          mode = "MOVE"
+          mode = "COPY"
         }
       }
     }

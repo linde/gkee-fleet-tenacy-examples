@@ -16,3 +16,10 @@ resource "google_project_iam_member" "monitoring_viewer" {
   role    = "roles/monitoring.viewer"
   member  = local.default_sa_member
 }
+
+resource "google_project_iam_member" "logging_bucket_writer" {
+  project = var.cluster_project
+  role    = "roles/logging.logWriter"
+  member  = local.default_sa_member
+}
+
