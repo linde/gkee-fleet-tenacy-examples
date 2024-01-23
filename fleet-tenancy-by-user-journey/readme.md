@@ -41,8 +41,10 @@ terraform apply
 
 cd ../team-level-setup/
 
-# set variables, as desired. none are required at this step but you can 
-# change the team name, for example.
+# set variables, as desired. you can optionally change the team name and provide 
+# namespace names. an email group for the dev team is required (no default would
+# have been safe)
+echo 'scope_email_group = "app-frontend-dev@example.com"' > terraform.tfvars
 
 terraform init
 terraform plan
@@ -98,7 +100,7 @@ Finally, shift roles and as App Operator/SRE then:
 cd ../team-self-service-namespace
 
 
-# you can set variables (e.g. for the self serve namespace name), but defaults work ok
+# you can set variables (e.g. for the self serve namespace name), but defaults work
 
 terraform init
 terraform plan

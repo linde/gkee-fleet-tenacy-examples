@@ -17,3 +17,13 @@ resource "google_gke_hub_namespace" "acme_scope_namespaces" {
   scope              = google_gke_hub_scope.acme_scope.id
 }
 
+resource "google_gke_hub_scope_rbac_role_binding" "scope_rbac_role_binding" {
+  project                    = local.fleet_project
+  scope_rbac_role_binding_id = google_gke_hub_scope.acme_scope.scope_id
+  scope_id                   = google_gke_hub_scope.acme_scope.scope_id
+  group                      = var.scope_email_group
+  role {
+    predefined_role = "EDIT"
+  }
+}
+

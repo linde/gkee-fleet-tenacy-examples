@@ -10,4 +10,7 @@ variable "team_namespaces" {
   default = ["www", "support"]
 }
 
+variable "scope_email_group" {
+  type = string
+}
 
