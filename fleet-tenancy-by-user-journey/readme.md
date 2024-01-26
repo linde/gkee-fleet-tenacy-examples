@@ -73,7 +73,7 @@ You can see what'd going on within the cluster(s) via the Cloud Console or kubec
 
 ```bash
 
-BINDING_0=google_gke_hub_membership_binding.acme_scope_clusters[0]
+BINDING_0=google_gke_hub_membership_binding.team_scope_cluster_bindings[0]
 
 PROJECT=$(echo ${BINDING_0}.project | terraform console | tr -d \")
 MEMBERSHIP_0=$(echo ${BINDING_0}.membership_id | terraform console | tr -d \")

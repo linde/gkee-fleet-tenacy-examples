@@ -1,5 +1,5 @@
 
-resource "google_container_cluster" "acme_clusters" {
+resource "google_container_cluster" "team_clusters" {
   project  = var.cluster_project
   count    = var.cluster_count
   location = var.cluster_location
@@ -7,19 +7,6 @@ resource "google_container_cluster" "acme_clusters" {
 
   # start and stay pretty small since this is an example
   initial_node_count = 1
-  cluster_autoscaling {
-    enabled = true
-    resource_limits {
-      resource_type = "cpu"
-      minimum       = 8
-      maximum       = 16
-    }
-    resource_limits {
-      resource_type = "memory"
-      minimum       = 8
-      maximum       = 16
-    }
-  }
 
   fleet {
     project = local.fleet_project
@@ -57,12 +44,12 @@ locals {
   membership_re = "//gkehub.googleapis.com/projects/([^/]*)/locations/([^/]*)/memberships/([^/]*)$"
 }
 
-resource "google_gke_hub_membership_binding" "acme_scope_clusters" {
+resource "google_gke_hub_membership_binding" "team_scope_cluster_bindings" {
   count                 = var.cluster_count
   project               = local.fleet_project
-  membership_binding_id = google_container_cluster.acme_clusters[count.index].name
+  membership_binding_id = google_container_cluster.team_clusters[count.index].name
   scope                 = local.scope.name
-  membership_id         = regex(local.membership_re, google_container_cluster.acme_clusters[count.index].fleet[0].membership)[2]
-  location              = regex(local.membership_re, google_container_cluster.acme_clusters[count.index].fleet[0].membership)[1]
+  membership_id         = regex(local.membership_re, google_container_cluster.team_clusters[count.index].fleet[0].membership)[2]
+  location              = regex(local.membership_re, google_container_cluster.team_clusters[count.index].fleet[0].membership)[1]
 }
 
