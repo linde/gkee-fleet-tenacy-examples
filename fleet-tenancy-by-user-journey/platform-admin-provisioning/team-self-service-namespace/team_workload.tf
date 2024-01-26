@@ -29,13 +29,13 @@ resource "kubernetes_deployment" "counter" {
           ]
           resources {
             limits = {
-              "memory"  = "50Mi"
-              "cpu"     = "10m"
+              "memory"            = "50Mi"
+              "cpu"               = "10m"
               "ephemeral-storage" = "500M"
             }
             requests = {
-              "memory"  = "50Mi"
-              "cpu"     = "10m"
+              "memory"            = "50Mi"
+              "cpu"               = "10m"
               "ephemeral-storage" = "500M"
             }
           }
