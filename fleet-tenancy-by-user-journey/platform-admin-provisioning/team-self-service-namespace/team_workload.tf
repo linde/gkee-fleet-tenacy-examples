@@ -24,17 +24,19 @@ resource "kubernetes_deployment" "counter" {
         container {
           image = "ubuntu:14.04"
           name  = "count"
-          args = [  
+          args = [
             "bash", "-c", "for ((i = 0; ; i++)); do echo \"$i: $(date)\"; sleep 1; done"
           ]
           resources {
             limits = {
-              "memory" = "100Mi"
-              "cpu"    = "100m"
+              "memory"  = "50Mi"
+              "cpu"     = "10m"
+              "ephemeral-storage" = "500M"
             }
             requests = {
-              "memory" = "50Mi"
-              "cpu"    = "50m"
+              "memory"  = "50Mi"
+              "cpu"     = "10m"
+              "ephemeral-storage" = "500M"
             }
           }
         }
