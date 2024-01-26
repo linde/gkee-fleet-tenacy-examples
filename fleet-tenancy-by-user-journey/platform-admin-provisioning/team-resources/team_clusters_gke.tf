@@ -7,7 +7,7 @@ resource "google_container_cluster" "team_clusters" {
 
   # bc this is an example, just want zonal nodes, but big enough
   # to run all the feature controllers, etc
-  initial_node_count = 2
+  initial_node_count = 3
   cluster_autoscaling {
     enabled = true
     resource_limits {
