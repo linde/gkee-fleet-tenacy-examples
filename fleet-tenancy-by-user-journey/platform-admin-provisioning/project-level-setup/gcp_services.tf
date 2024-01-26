@@ -16,6 +16,7 @@ resource "google_project_service" "services" {
     "meshca.googleapis.com",
     "containersecurity.googleapis.com",
     "gkemulticloud.googleapis.com",
+    "logging.googleapis.com",
   ])
   service            = each.value
   disable_on_destroy = false
