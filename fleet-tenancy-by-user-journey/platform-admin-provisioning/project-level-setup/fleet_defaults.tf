@@ -21,9 +21,9 @@ resource "google_gke_hub_feature" "fleet_policy_defaults" {
     }
   }
   depends_on = [
-    google_project_service.gkee,
-    google_project_service.gkehub,
-    google_project_service.policycontroller
+    google_project_service.services["gkee.googleapis.com"],
+    google_project_service.services["gkehub.googleapis.com"],
+    google_project_service.services["policycontroller.googleapis.com"],
   ]
 }
 
@@ -64,10 +64,11 @@ resource "google_gke_hub_feature" "mesh_config_defaults" {
       management = "MANAGEMENT_AUTOMATIC"
     }
   }
+
   depends_on = [
-    google_project_service.gkee,
-    google_project_service.gkehub,
-    google_project_service.meshconfig
+    google_project_service.services["gkee.googleapis.com"],
+    google_project_service.services["gkehub.googleapis.com"],
+    google_project_service.services["meshconfig.googleapis.com"],
   ]
 }
 
@@ -90,8 +91,8 @@ resource "google_gke_hub_feature" "fleetobservability" {
   }
 
   depends_on = [
-    google_project_service.gkee,
-    google_project_service.gkehub,
+    google_project_service.services["gkee.googleapis.com"],
+    google_project_service.services["gkehub.googleapis.com"],
   ]
 }
 
@@ -107,9 +108,9 @@ resource "google_gke_hub_fleet" "default" {
   }
 
   depends_on = [
-    google_project_service.gkee,
-    google_project_service.gkehub,
-    google_project_service.containersecurity
+    google_project_service.services["gkee.googleapis.com"],
+    google_project_service.services["gkehub.googleapis.com"],
+    google_project_service.services["containersecurity.googleapis.com"],
   ]
 }
 

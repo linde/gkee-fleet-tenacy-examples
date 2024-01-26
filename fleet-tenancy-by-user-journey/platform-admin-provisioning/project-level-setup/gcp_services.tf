@@ -4,6 +4,7 @@ locals {
 }
 
 resource "google_project_service" "services" {
+  project = var.fleet_project
   for_each = toset([
     "container.googleapis.com",
     "anthos.googleapis.com",
