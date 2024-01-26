@@ -5,8 +5,23 @@ resource "google_container_cluster" "team_clusters" {
   location = var.cluster_location
   name     = "${var.cluster_prefix}-${local.rand.hex}-${count.index}"
 
-  # start and stay pretty small since this is an example
-  initial_node_count = 1
+  # bc this is an example, just want zonal nodes, but big enough
+  # to run all the feature controllers, etc
+  initial_node_count = 2
+  cluster_autoscaling {
+    enabled = true
+    resource_limits {
+      resource_type = "cpu"
+      minimum       = 8
+      maximum       = 16
+    }
+    resource_limits {
+      resource_type = "memory"
+      minimum       = 8
+      maximum       = 16
+    }
+  }
+
 
   fleet {
     project = local.fleet_project
