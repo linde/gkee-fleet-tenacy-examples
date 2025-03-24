@@ -17,7 +17,7 @@ resource "helm_release" "worker_0" {
   }
 
   depends_on = [
-    google_gke_hub_feature.multiclusteringress
+    time_sleep.post_mci
   ]
 }
 
