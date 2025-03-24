@@ -40,14 +40,14 @@ After a little while you can verify things:
 
 # get creds for the hub cluster
 
+HUB_PROJ=$(echo google_container_cluster.hub.project  | terraform console | tr -d '"')
 HUB_NAME=$(echo google_container_cluster.hub.name  | terraform console | tr -d '"')
 HUB_LOC=$(echo google_container_cluster.hub.location  | terraform console | tr -d '"')
-gcloud container clusters get-credentials --project=${GCP_PROJECT} --location=${HUB_LOC} ${HUB_NAME}
+gcloud container clusters get-credentials --project=${HUB_PROJ} --location=${HUB_LOC} ${HUB_NAME}
 
 export VIP=$(kubectl get gateway -n store external-http -ojson | jq .status.addresses[0].value -r)
 
 curl -s -H "host: store.example.com" http://${VIP} | jq .
-
 curl -s -H "host: store.example.com" http://${VIP}/worker{0,1} | jq . 
 
 ```
