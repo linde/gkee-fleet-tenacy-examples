@@ -23,6 +23,10 @@ resource "google_container_cluster" "team_clusters" {
     workload_pool = "${var.gcp_project}.svc.id.goog"
   }
 
+  depends_on = [
+    time_sleep.post_services_wait
+  ]
+
   deletion_protection = false
 }
 
@@ -45,6 +49,10 @@ resource "google_container_cluster" "hub" {
   workload_identity_config {
     workload_pool = "${var.gcp_project}.svc.id.goog"
   }
+
+  depends_on = [
+    time_sleep.post_services_wait
+  ]
 
   deletion_protection = false
 }
