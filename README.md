@@ -1,5 +1,5 @@
-# gkee-fleet-tenacy-examples
-This repo hosts a few GKE Enterprise Fleet Tenancy examples
+# gke-multi-cluster-examples
+This repo hosts a few GKE Multi-cluster Tenancy examples
 
 * [fleet-tenancy-with-defaults](fleet-tenancy-with-defaults) is an example of a couple concepts coming together
   * fleet-wide default settings for policy and config
