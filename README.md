@@ -9,6 +9,8 @@ This repo hosts a few GKE Multi-cluster Tenancy examples
     * [project-level-setup](./fleet-tenancy-by-user-journey/platform-admin-provisioning/project-level-setup) once per project
     * then per [team-level-setup](fleet-tenancy-by-user-journey/platform-admin-provisioning/team-level-setup) and [team-resources](fleet-tenancy-by-user-journey/platform-admin-provisioning/team-resources) for them like clusters with appropriate observability.
     * and finally, after a handoff, [team self service](fleet-tenancy-by-user-journey/platform-admin-provisioning/team-self-service-namespace) namespace and cluster resource provisioning.
+* [deploying-multi-cluster-gateways](deploying-multi-cluster-gateways) works out the terraform necessary for the example [deploying-multi-cluster-gateways](https://cloud.google.com/kubernetes-engine/docs/how-to/deploying-multi-cluster-gateways).
+
 
 
 > **Note:**
