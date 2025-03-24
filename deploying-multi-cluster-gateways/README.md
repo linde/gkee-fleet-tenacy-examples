@@ -44,8 +44,9 @@ HUB_NAME=$(echo google_container_cluster.hub.name  | terraform console | tr -d '
 HUB_LOC=$(echo google_container_cluster.hub.location  | terraform console | tr -d '"')
 gcloud container clusters get-credentials --project=${HUB_PROJ} --location=${HUB_LOC} ${HUB_NAME}
 
-export VIP=$(kubectl get gateway -n store external-http -ojson | jq .status.addresses[0].value -r)
+kubectl get gateway -n store
 
+export VIP=$(kubectl get gateway -n store external-http -ojson | jq .status.addresses[0].value -r); echo ${VIP}
 curl -s -H "host: store.example.com" http://${VIP} | jq .
 curl -s -H "host: store.example.com" http://${VIP}/worker{0,1} | jq . 
 

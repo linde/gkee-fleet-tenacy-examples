@@ -18,6 +18,10 @@ variable "hub_location" {
   default = "us-central1"
 }
 
+variable "helm_chart_root" {
+  type    = string
+  default = "../helm-charts"
+}
 
 resource "random_id" "rand" {
   byte_length = 4

@@ -9,7 +9,7 @@ resource "helm_release" "worker_0" {
   provider = helm.mcg_0
 
   name  = "worker"
-  chart = "./charts/worker"
+  chart = "${var.helm_chart_root}/worker"
 
   set {
     name  = "cluster"
@@ -26,7 +26,7 @@ resource "helm_release" "worker_1" {
   provider = helm.mcg_1
 
   name  = "worker"
-  chart = "./charts/worker"
+  chart = "${var.helm_chart_root}/worker"
 
   set {
     name  = "cluster"
@@ -39,12 +39,11 @@ resource "helm_release" "worker_1" {
   ]
 }
 
-
 resource "helm_release" "hub" {
   provider = helm.hub
 
   name  = "hub"
-  chart = "./charts/hub"
+  chart = "${var.helm_chart_root}/hub"
 
   set {
     name  = "service0"

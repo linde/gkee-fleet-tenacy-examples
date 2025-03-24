@@ -8,7 +8,7 @@ resource "google_project_iam_member" "networkViewer" {
   role    = "roles/compute.networkViewer"
   member  = "serviceAccount:${var.gcp_project}.svc.id.goog[gke-mcs/gke-mcs-importer]"
 
-  depends_on = [ time_sleep.post_mci ]
+  depends_on = [time_sleep.post_mci]
 }
 
 resource "google_project_iam_member" "containerAdmin" {
@@ -16,7 +16,7 @@ resource "google_project_iam_member" "containerAdmin" {
   role    = "roles/container.admin"
   member  = "serviceAccount:service-${data.google_project.cluster_project.number}@gcp-sa-multiclusteringress.iam.gserviceaccount.com"
 
-  depends_on = [ time_sleep.post_mci ]
+  depends_on = [time_sleep.post_mci]
 }
 
 
