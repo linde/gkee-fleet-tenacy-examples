@@ -10,7 +10,7 @@ This little project just works out the terraform necessary for the example [depl
 
 export GCP_PROJECT=[PROJECT]
 export GCP_FOLDER=[FOLDER]
-export GCP_BILLING_ACCCOUNT=[FOLDER]
+export GCP_BILLING_ACCCOUNT=[BILLING ACCOUNT GUID]
 
 
 gcloud projects create ${GCP_PROJECT} --folder=${GCP_FOLDER}
@@ -23,7 +23,8 @@ gcp_project="${GCP_PROJECT}"
 EOF
 
 terraform init
-terraform apply -auto-approve 
+terraform plan
+terraform apply 
 
 # get some coffee, possibly re-apply, you might get an error but they're generally
 # transient because resource ordering. just reapply and it should work.
