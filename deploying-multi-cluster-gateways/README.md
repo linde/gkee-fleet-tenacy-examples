@@ -4,8 +4,6 @@
 
 This little project just works out the terraform necessary for the example [deploying-multi-cluster-gateways](https://cloud.google.com/kubernetes-engine/docs/how-to/deploying-multi-cluster-gateways).
 
-It's not really about tenancy and definitely not enterprise, but a handy resource.
-
 ```bash
 
 # set up a new, empty project. 
