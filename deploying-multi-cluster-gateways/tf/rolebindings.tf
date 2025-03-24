@@ -11,7 +11,6 @@ resource "google_project_iam_member" "networkViewer" {
   depends_on = [ time_sleep.post_mci ]
 }
 
-
 resource "google_project_iam_member" "containerAdmin" {
   project = var.gcp_project
   role    = "roles/container.admin"
@@ -20,5 +19,14 @@ resource "google_project_iam_member" "containerAdmin" {
   depends_on = [ time_sleep.post_mci ]
 }
 
+
+// wait to allow time for rolebindings
+resource "time_sleep" "post_rolebindings" {
+  create_duration = "30s"
+  depends_on = [
+    google_project_iam_member.networkViewer,
+    google_project_iam_member.containerAdmin,
+  ]
+}
 
 

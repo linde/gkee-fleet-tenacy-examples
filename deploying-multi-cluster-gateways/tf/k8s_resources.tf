@@ -17,7 +17,8 @@ resource "helm_release" "worker_0" {
   }
 
   depends_on = [
-    time_sleep.post_mci
+    time_sleep.post_mci,
+    time_sleep.post_rolebindings,
   ]
 }
 
@@ -33,7 +34,8 @@ resource "helm_release" "worker_1" {
   }
 
   depends_on = [
-    time_sleep.post_mci
+    time_sleep.post_mci,
+    time_sleep.post_rolebindings,
   ]
 }
 
